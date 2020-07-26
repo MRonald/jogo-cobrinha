@@ -41,13 +41,14 @@ function iniciarJogo() {
     for (let i = 1; i < snake.length; i++) {
         if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
             clearInterval(jogo)
-            alert('Game over')
+            alert('Game over :(')
         }
     }
 
     criarBG()
-    criarSnake()
     drawFood()
+    criarSnake()
+    
 
     // Movimento inicial da cobrinha
     let snakeX = snake[0].x
@@ -58,13 +59,13 @@ function iniciarJogo() {
     if (direction == "up") snakeY -= box
     if (direction == "down") snakeY += box
 
+    // Configurando choque da cobrinha com seu próprio corpo
     if (snakeX != food.x || snakeY != food.y) {
         snake.pop()
     } else {
         food.x = Math.floor(Math.random() * 15 + 1) * box
         food.y = Math.floor(Math.random() * 15 + 1) * box
     }
-    
 
     let newHead = {
         x: snakeX,
@@ -87,5 +88,4 @@ let jogo = setInterval(iniciarJogo, 100)
 
 /* Bug
     Nas quatro posições da tela é possível a cobrinha ficar em uma posição que suma da tela
-    Frutinha pode surgir em cima do corpo da cobra
 */
